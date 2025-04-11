@@ -1,0 +1,3 @@
+FROM jirofly/oobuild:0.3
+
+RUN cd /app/build_tools/tools/linux && python3 ./automate.py server --platform="linux_arm64"
