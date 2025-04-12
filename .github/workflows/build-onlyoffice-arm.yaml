@@ -5,9 +5,9 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: zhangjl
     steps:
-      - name: proxy 22
+      - name: docker info
         run: |
           sudo systemctl stop docker
           sudo mkdir -p /mnt/lib/docker
