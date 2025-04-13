@@ -1,27 +1,29 @@
-name: Docker Build on macOS
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+  pull_request:
 
 jobs:
-  build:
-    runs-on: macos-latest  # 指定 macOS 运行环境[3,8](@ref)
+  setup-docker:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13]
+    name: A job to perform a self-test on this Github Action
     steps:
-      - name: Checkout code
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3  # 配置多平台构建工具[2,3](@ref)
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}  # 使用 Secrets 存储凭证[2,4](@ref)
-
-      - name: Build and Push Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile.onlyoffice.arm
-          platforms: linux/arm64
-          push: true
-          tags: jirofly/app:latest
+      - name: Setup Docker on macOS using Colima, Lima-VM, and Homebrew.
+        uses: ./ # Uses an action in the root directory
+        id: docker
+      - name: Get the Docker client version
+        run: |
+          echo "Docker client version: ${{ steps.docker.outputs.docker-client-version }}"
+      - name: Get the Colima version
+        run: |
+          echo "Colima version: ${{ steps.docker.outputs.colima-version }}"
