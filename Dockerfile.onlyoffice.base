@@ -1,6 +1,5 @@
 # qt, deps, core_common
-
-FROM oo-qt:5.9.9
+FROM jirofly/oo-qt:5.9.9
 
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
