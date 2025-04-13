@@ -5,7 +5,8 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: macos-latest 
     steps:
       - name: docker info
         run: |
@@ -19,16 +20,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 配置多平台构建环境
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      # # 配置多平台构建环境
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v3
 
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          driver-opts: |
-            image=moby/buildkit:master
-            network=host
+      # - name: Set up Buildx
+      #   uses: docker/setup-buildx-action@v3
+      #   with:
+      #     driver-opts: |
+      #       image=moby/buildkit:master
+      #       network=host
 
       # Docker Hub 认证
       - name: Login to Docker Hub
