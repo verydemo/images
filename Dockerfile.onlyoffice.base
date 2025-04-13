@@ -9,8 +9,9 @@ RUN apt-get -y update && \
                        python3 \
                        sudo
 RUN rm /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python
-ADD . /build_tools
-WORKDIR /build_tools
+
 
 # Define the command to run
-RUN cd tools/linux && python3 ./automate.py --platform="linux_arm64"
+RUN mkdir /app && cd /app && \
+    git clone --branch release/v8.1.0.1 https://github.com/verydemo/build_tools.git && \
+    cd /app/build_tools/tools/linux && python3 ./automate.py --platform="linux_arm64"
