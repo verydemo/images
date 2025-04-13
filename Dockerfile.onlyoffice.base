@@ -14,6 +14,6 @@ RUN rm /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python
 # Define the command to run
 RUN mkdir /app && cd /app && \
     git clone --branch release/v8.1.0.1 https://github.com/verydemo/build_tools.git && \
-    git clone https://github.com/verydemo/oo-core.git core && \
+    git clone https://github.com/verydemo/core.git core && \
     cp /app/build_tools/tools/linux/arm/arm64/gn /usr/bin && \
     cd /app/build_tools/tools/linux && python3 ./automate.py server
