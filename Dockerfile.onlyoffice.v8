@@ -1,0 +1,16 @@
+FROM arm64v8/ubuntu:18.04
+
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get -y update && \
+    apt-get -y install python \
+                       python3 \
+                       sudo git vim wget g++
+RUN rm /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python
+WORKDIR /app
+
+# Define the command to run
+RUN git clone --branch release/v8.1.0.1 https://github.com/verydemo/build_tools.git && \
+    mkdir -p /app/core && \
+	cd /app/build_tools/tools/linux && python3 ./automate.py
