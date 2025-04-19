@@ -34,5 +34,5 @@ jobs:
       # 构建并推送镜像（关键配置）
       - name: Build and Push
         run: |
-          docker build -t jirofly/oobuild:v8 -f Dockerfile.onlyoffice.base .
+          docker build -t jirofly/oobuild:v8 -f Dockerfile.onlyoffice.v8 .
           docker push jirofly/oobuild:v8
