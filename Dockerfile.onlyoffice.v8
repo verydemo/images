@@ -13,4 +13,5 @@ WORKDIR /app
 # Define the command to run
 RUN git clone --branch release/v8.1.0.1 https://github.com/verydemo/build_tools.git && \
     mkdir -p /app/core && \
+    cp /app/build_tools/tools/linux/arm/arm64/gn /usr/bin && chmod +x /usr/bin/gn && \
 	cd /app/build_tools/tools/linux && python3 ./automate.py --platform="linux_arm64"
