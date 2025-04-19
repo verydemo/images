@@ -18,4 +18,4 @@ RUN mkdir /app && cd /app && \
     cp /app/build_tools/tools/linux/arm/arm64/gn /usr/bin/ && chmod +x /usr/bin/gn && \
     mkdir -p /app/build_tools/tools/linux/qt_build/Qt-5.9.9/gcc_64 && \
     mv /qt-build/* /app/build_tools/tools/linux/qt_build/Qt-5.9.9/gcc_64 && \
-    cd /app/build_tools/tools/linux && python3 ./automate.py --platform=linux_arm64
+    cd /app/build_tools/tools/linux && python3 ./automate.py --platform=linux_arm64 --qt-dir="/app/build_tools/tools/linux/qt_build/Qt-5.9.9"
