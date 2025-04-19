@@ -20,9 +20,9 @@ jobs:
           lsb_release -a
           uname -a
     
-      # # 检出代码
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       # Docker Hub 认证
       - name: Login to Docker Hub
