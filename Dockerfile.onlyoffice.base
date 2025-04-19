@@ -16,5 +16,5 @@ RUN rm /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python
 RUN mkdir /app && cd /app && \
     git clone --branch release/v8.1.0.1 https://github.com/verydemo/build_tools.git && \
     git clone https://github.com/verydemo/oo-core.git core && \
-    cp /app/build_tools/tools/linux/arm/arm64/gn /usr/bin/ &&  chmod +x /usr/bin/gn \
+    cp /app/build_tools/tools/linux/arm/arm64/gn /usr/bin/ && chmod +x /usr/bin/gn && \
     cd /app/build_tools/tools/linux && python3 ./automate.py --platform=linux_arm64 --multiprocess=4
