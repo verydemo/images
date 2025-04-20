@@ -37,8 +37,3 @@ RUN cd /source/qt-everywhere-opensource-src-5.9.9 && \
     make -j$CORES && \
     make install
 
-
-FROM arm64v8/ubuntu:18.04
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-COPY --from=builder /build /qt-build

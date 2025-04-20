@@ -1,6 +1,6 @@
-FROM jirofly/oobuild:v8 as v8
+FROM jirofly/v8-arm64:6.0.0 as v8
 FROM jirofly/oobuild:base
 
 RUN mkdir -p /app/core/Common/3dParty/v8/v8/
 
-COPY --from=v8 /app/core/Common/3dParty/v8_89/v8/ /app/core/Common/3dParty/v8/v8/
+COPY --from=v8 /app /app/core/Common/3dParty/v8/v8/
